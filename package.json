@@ -1,0 +1,23 @@
+{
+	"name": "loki-serverless-client",
+	"version": "1.0.0",
+	"description": "TypeScript client for loki with auth support",
+	"main": "index.js",
+	"directories": {
+		"lib": "lib"
+	},
+	"scripts": {
+		"build": "tsc"
+	},
+	"keywords": [
+		"loki",
+		"grafana",
+		"serverless",
+		"workers"
+	],
+	"author": "maddsua",
+	"license": "MIT",
+	"devDependencies": {
+		"typescript": "^5.5.4"
+	}
+}

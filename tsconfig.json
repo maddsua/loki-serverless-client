@@ -1,0 +1,19 @@
+{
+	"compilerOptions": {
+		"lib": ["DOM", "ES6", "ESNext"],
+		"target": "ESNext",
+		"module": "ESNext",
+		"sourceMap": false,
+		"moduleResolution": "Bundler",
+		"allowSyntheticDefaultImports": true,
+		"strict": true,
+		"outDir": "dist",
+	},
+	"include": [
+		"lib"
+	],
+	"exclude": [
+		"node_modules",
+		"dist",
+	]
+}
