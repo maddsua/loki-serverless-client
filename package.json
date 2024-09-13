@@ -1,11 +1,24 @@
 {
-	"name": "loki-serverless-client",
+	"name": "@maddsua/loki-serverless-client",
 	"version": "1.0.0",
+	"type": "module",
 	"description": "TypeScript client for loki with auth support",
-	"main": "index.js",
-	"directories": {
-		"lib": "lib"
+	"main": "./dist/LogLevel.js",
+	"types": "./dist/LogLevel.d.ts",
+	"exports": {
+		".": {
+			"import": "./dist/LogLevel.js",
+			"types": "./dist/LogLevel.d.ts"
+		},
+		"./lib": {
+			"import": "./lib/LogLevel.ts",
+			"types": "./lib/LogLevel.ts"
+		}
 	},
+	"files": [
+		"dist",
+		"lib"
+	],
 	"scripts": {
 		"build": "tsc"
 	},
