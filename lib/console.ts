@@ -32,20 +32,35 @@ const stringifyContent = (items: any[]): string => {
 };
 
 const stringifyItem = (item: any): string => {
+
 	switch (typeof item) {
 		case 'string': return item;
 		case 'number': return item.toString();
 		case 'bigint': return item.toString();
 		case 'boolean': return item ? 'true' : 'false';
-		case 'object': return stringifyObject(item);
-		default: return '[unsupported value]';
 	}
-};
 
-const stringifyObject = (item: object): string => {
 	try {
+
+		if (item instanceof Error) {
+			return item.message;
+		}
+	
+		if (item instanceof Set) {
+			return Array.from(item.keys()).join(', ');
+		}
+	
+		if (item instanceof Map) {
+			return JSON.stringify(Array.from(item.entries()));
+		}
+	
+		if (item instanceof RegExp) {
+			return item.source;
+		}
+
 		return JSON.stringify(item);
-	} catch (_) {
-		return '[unsupported object value]';
+		
+	} catch (error) {
+		return '[unsupported value]';
 	}
 };
