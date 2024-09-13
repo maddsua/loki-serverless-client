@@ -25,8 +25,8 @@ export class Loki {
 		remote.pathname = props.apiPath || '/loki/api/v1/push';
 
 		this.m_creds = { remote, token: props.token };
-		this.m_buffer = props.batching ? new LogBuffer() : null;
 		this.m_labels = props.labels || {};
+		this.m_buffer = props.batching ? new LogBuffer(this.m_labels) : null;
 
 		this.console = new LokiConsole(this);
 	}
