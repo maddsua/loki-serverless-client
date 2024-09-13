@@ -1,8 +1,10 @@
 import { LogBuffer, LogEntry, transformEntry } from "./buffer";
+import { LokiConsole } from "./console";
 import { postEntries, type Credentials } from "./rest";
 
 export interface LokiProps {
 	host: string;
+	apiPath?: string;
 	proto?: 'http' | 'https';
 	token?: string;
 	batching?: boolean;
@@ -19,11 +21,14 @@ export class Loki {
 
 		const remote = new URL(props.host.includes('://') ?
 			props.host : `${props.proto || 'https'}://${props.host}/`);
-		remote.pathname = '/loki/api/v1/push';
+
+		remote.pathname = props.apiPath || '/loki/api/v1/push';
 
 		this.m_creds = { remote, token: props.token };
 		this.m_buffer = props.batching ? new LogBuffer() : null;
 		this.m_labels = props.labels || {};
+
+		this.console = new LokiConsole(this);
 	}
 
 	push = async (entry: LogEntry): Promise<Error | null> => {
@@ -47,4 +52,6 @@ export class Loki {
 
 		await postEntries(this.m_creds, this.m_buffer.collect());
 	};
+
+	console: LokiConsole;
 };
