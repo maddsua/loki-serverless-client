@@ -2,13 +2,14 @@ import { LogBuffer, transformEntry, type LogEntry } from "./buffer";
 import { LokiConsole } from "./console";
 import { postEntries, type Credentials } from "./rest";
 
-export interface LokiProps {
+export interface LokiOptions {
 	host: string;
 	apiPath?: string;
 	proto?: 'http' | 'https';
 	token?: string;
 	batching?: boolean;
 	labels?: Record<string, string>;
+	consoleMirroring?: boolean;
 };
 
 export class Loki {
@@ -17,18 +18,18 @@ export class Loki {
 	private m_buffer: LogBuffer | null;
 	private m_labels: Record<string, string>;
 
-	constructor(props: LokiProps) {
+	constructor(opts: LokiOptions) {
 
-		const remote = new URL(props.host.includes('://') ?
-			props.host : `${props.proto || 'https'}://${props.host}/`);
+		const remote = new URL(opts.host.includes('://') ?
+			opts.host : `${opts.proto || 'https'}://${opts.host}/`);
 
-		remote.pathname = props.apiPath || '/loki/api/v1/push';
+		remote.pathname = opts.apiPath || '/loki/api/v1/push';
 
-		this.m_creds = { remote, token: props.token };
-		this.m_labels = props.labels || {};
-		this.m_buffer = props.batching ? new LogBuffer(this.m_labels) : null;
+		this.m_creds = { remote, token: opts.token };
+		this.m_labels = opts.labels || {};
+		this.m_buffer = opts.batching ? new LogBuffer(this.m_labels) : null;
 
-		this.console = new LokiConsole(this);
+		this.console = new LokiConsole(this, opts.consoleMirroring);
 	}
 
 	push = async (entry: LogEntry): Promise<Error | null> => {

@@ -1,2 +1,2 @@
-export { Loki, type LokiProps } from './client';
+export { Loki, type LokiOptions } from './client';
 export type { LokiConsole, LogLevel } from './console';
