@@ -53,7 +53,7 @@ const stringifyItem = (item: any): string => {
 	try {
 
 		if (item instanceof Error) {
-			return item.message;
+			return `Error: ${item.message}`;
 		}
 	
 		if (item instanceof Set) {
