@@ -1,4 +1,4 @@
-import { LogBuffer, LogEntry, transformEntry } from "./buffer";
+import { LogBuffer, transformEntry, type LogEntry } from "./buffer";
 import { LokiConsole } from "./console";
 import { postEntries, type Credentials } from "./rest";
 

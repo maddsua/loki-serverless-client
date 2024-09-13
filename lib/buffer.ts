@@ -41,7 +41,7 @@ export class LogBuffer {
 				continue;
 			}
 
-			labelSets.set(labelKey, set.concat(set));
+			labelSets.set(labelKey, set.concat(item));
 		}
 
 		return Array.from(labelSets.entries()).map(([_, entries]) => ({
