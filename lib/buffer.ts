@@ -45,7 +45,7 @@ export class LogBuffer {
 		}
 
 		return Array.from(labelSets.entries()).map(([_, entries]) => ({
-			stream: Object.assign(this.m_labels, entries[0].labels),
+			stream: Object.assign({}, this.m_labels, entries[0].labels),
 			values: entries.map(item => transformEntry(item))
 		}));
 	}
