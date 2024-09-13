@@ -8,7 +8,6 @@ on:
 jobs:
 
   publish-npmjs:
-    if: false
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
