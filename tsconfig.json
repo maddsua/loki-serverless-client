@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-		"lib": ["DOM", "ES2015", "ESNext"],
+		"lib": ["DOM", "DOM.Iterable", "ES6", "ES2015", "ESNext"],
 		"target": "ESNext",
 		"moduleResolution": "Bundler",
 		"strict": true,

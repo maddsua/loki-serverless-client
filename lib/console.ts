@@ -48,7 +48,28 @@ const stringifyItem = (item: any): string => {
 		case 'number': return item.toString();
 		case 'bigint': return item.toString();
 		case 'boolean': return item ? 'true' : 'false';
+		case 'object': return serializeObject(item);
 	}
+
+	return '[unsupported value]';
+};
+
+const serializeObject = (item: object): string => {
+
+	const unwrapped = unwrapObject(item);
+	if (unwrapped) {
+		return unwrapped;
+	}
+
+	try {
+		return JSON.stringify(item);
+	} catch (_) {
+		return '[unsupported object value]';
+	}
+
+};
+
+const unwrapObject = (item: object): string | null => {
 
 	try {
 
@@ -68,9 +89,13 @@ const stringifyItem = (item: any): string => {
 			return item.source;
 		}
 
-		return JSON.stringify(item);
-		
-	} catch (error) {
-		return '[unsupported value]';
+		if (item instanceof FormData) {
+			return JSON.stringify(Object.fromEntries(item));
+		}
+
+	} catch (_) {
+		return null;
 	}
+
+	return null;
 };
