@@ -1,22 +1,11 @@
 {
 	"name": "@maddsua/loki-serverless-client",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"type": "module",
 	"description": "TypeScript client for loki with auth support",
-	"main": "./dist/index.js",
-	"types": "./dist/index.d.ts",
-	"exports": {
-		".": {
-			"import": "./dist/index.js",
-			"types": "./dist/index.d.ts"
-		},
-		"./lib": {
-			"import": "./lib/index.ts",
-			"types": "./lib/index.ts"
-		}
-	},
+	"main": "./lib/index.ts",
+	"types": "./lib/index.ts",
 	"files": [
-		"dist",
 		"lib"
 	],
 	"scripts": {
@@ -30,7 +19,7 @@
 	],
 	"author": "maddsua",
 	"license": "MIT",
-	"devDependencies": {
-		"typescript": "^5.5.4"
+	"dependencies": {
+		"typescript": "^5.6.2"
 	}
 }

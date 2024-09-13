@@ -3,11 +3,8 @@
 		"lib": ["DOM", "ES2015", "ESNext"],
 		"target": "ESNext",
 		"moduleResolution": "Bundler",
-		"outDir": "dist",
-		"declaration": true,
-		"sourceMap": false,
 		"strict": true,
-		"jsx": "preserve",
+		"noEmit": true
 	},
 	"include": ["lib"],
 	"exclude": [
