@@ -1,5 +1,5 @@
 
-import type { Loki } from "./client";
+import type { Loki } from "./client.js";
 
 export type LogLevel = 'info' | 'log' | 'warn' | 'error' | 'debug';
 

@@ -1,6 +1,6 @@
-import { LogBuffer, transformEntry, type LogEntry } from "./buffer";
-import { LokiConsole } from "./console";
-import { postEntries, type Credentials } from "./rest";
+import { LogBuffer, transformEntry, type LogEntry } from "./buffer.js";
+import { LokiConsole } from "./console.js";
+import { postEntries, type Credentials } from "./rest.js";
 
 export interface LokiOptions {
 	host: string;

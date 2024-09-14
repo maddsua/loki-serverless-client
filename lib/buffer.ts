@@ -1,4 +1,4 @@
-import type { LokiStream, LokiValue } from "./rest";
+import type { LokiStream, LokiValue } from "./rest.js";
 
 export interface LogEntry {
 	labels: Record<string, string>;

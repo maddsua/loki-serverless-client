@@ -1,3 +1,1 @@
 This package implements a simple Loki client that can be used as a replacement for the standard javascript console.
-
-Please note that this package is TypeScript-only.

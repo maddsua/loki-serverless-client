@@ -3,8 +3,10 @@
 		"lib": ["DOM", "DOM.Iterable", "ES6", "ES2015", "ESNext"],
 		"target": "ESNext",
 		"moduleResolution": "Bundler",
+		"outDir": "dist",
 		"strict": true,
-		"noEmit": true,
+		"declaration": true,
+		"sourceMap": false,
 		"verbatimModuleSyntax": true
 	},
 	"include": ["lib"],
