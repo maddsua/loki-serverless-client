@@ -56,46 +56,38 @@ const stringifyItem = (item: any): string => {
 
 const serializeObject = (item: object): string => {
 
-	const unwrapped = unwrapObject(item);
-	if (unwrapped) {
-		return unwrapped;
-	}
-
 	try {
-		return JSON.stringify(item);
+		return JSON.stringify(item, jsonReplacer);
 	} catch (_) {
 		return '[unsupported object value]';
 	}
-
 };
 
-const unwrapObject = (item: object): string | null => {
+const jsonReplacer = (_: string, value: any): any => {
 
-	try {
-
-		if (item instanceof Error) {
-			return `Error: ${item.message}`;
-		}
-	
-		if (item instanceof Set) {
-			return Array.from(item.keys()).join(', ');
-		}
-	
-		if (item instanceof Map) {
-			return JSON.stringify(Array.from(item.entries()));
-		}
-	
-		if (item instanceof RegExp) {
-			return item.source;
-		}
-
-		if (item instanceof FormData) {
-			return JSON.stringify(Object.fromEntries(item));
-		}
-
-	} catch (_) {
-		return null;
+	if (typeof value !== 'object') {
+		return value;
 	}
 
-	return null;
+	if (value instanceof Error) {
+		return { message: value.message };
+	}
+
+	if (value instanceof FormData) {
+		return Object.fromEntries(value);
+	}
+
+	if (value instanceof RegExp) {
+		return value.source;
+	}
+
+	if (value instanceof Set) {
+		return Array.from(value.keys());
+	}
+
+	if (value instanceof Map) {
+		return Object.fromEntries(value);
+	}
+
+	return value;
 };
