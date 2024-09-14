@@ -55,6 +55,6 @@ export class LogBuffer {
 };
 
 export const transformEntry = (entry: LogEntry): LokiValue => (entry.metadata ?
-	[ `${entry.date.getTime() * 1000000}`, entry.message, entry.metadata ] :
-	[ `${entry.date.getTime() * 1000000}`, entry.message ]
+	[ `${entry.date.getTime()}000000`, entry.message, entry.metadata ] :
+	[ `${entry.date.getTime()}000000`, entry.message ]
 );
